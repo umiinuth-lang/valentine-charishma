@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Charishma 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff4e8a, #ff8ccf);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.container {
+    background: rgba(255,255,255,0.15);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 360px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+h1 {
+    font-size: 26px;
+}
+
+p {
+    font-size: 18px;
+}
+
+button {
+    font-size: 18px;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#yesBtn {
+    background: #00e676;
+    color: #004d40;
+}
+
+#noBtn {
+    background: #ff1744;
+    color: white;
+    position: absolute;
+}
+
+.final {
+    display: none;
+}
+
+.rose {
+    position: fixed;
+    top: -50px;
+    font-size: 24px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 Background Music (replace VIDEO_ID) -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&loop=1&playlist=VIDEO_ID"
+frameborder="0"
+allow="autoplay">
+</iframe>
+
+<div class="container" id="main">
+    <h1>💖 Charishma 💖</h1>
+    <p id="message">Will you be my Valentine? 😌</p>
+
+    <button id="yesBtn" onclick="yesClicked()">Yes 💕</button>
+    <button id="noBtn" onclick="moveNo()">No 🙈</button>
+</div>
+
+<div class="container final" id="final">
+    <h1>🥰 Yayyyy!</h1>
+    <p>Charishma, you just made my heart so happy 💘</p>
+    <p>This Valentine’s Day is special because of YOU ❤️</p>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const message = document.getElementById("message");
+
+const texts = [
+    "Are you sure? 🥺",
+    "Think again 😳",
+    "My heart is fragile 💔",
+    "Still no? 😅",
+    "Okay you’re enjoying this 😏"
+];
+
+let i = 0;
+
+function moveNo() {
+    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 100) + "px";
+    message.innerText = texts[i % texts.length];
+    i++;
+}
+
+function yesClicked() {
+    document.getElementById("main").style.display = "none";
+    document.getElementById("final").style.display = "block";
+    startRoses();
+}
+
+function startRoses() {
+    for (let i = 0; i < 30; i++) {
+        let rose = document.createElement("div");
+        rose.className = "rose";
+        rose.innerText = "🌹";
+        rose.style.left = Math.random() * 100 + "vw";
+        rose.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(rose);
+
+        setTimeout(() => rose.remove(), 6000);
+    }
+}
+</script>
+
+</body>
+</html>
