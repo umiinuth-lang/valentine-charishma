@@ -88,35 +88,68 @@ allow="autoplay">
     <h1>💖 Charishma 💖</h1>
     <p id="message">Will you be my Valentine? 😌</p>
 
-    <button id="yesBtn" onclick="yesClicked()">Yes 💕</button>
-    <button id="noBtn" onclick="moveNo()">No 🙈</button>
+<button id="yesBtn" onclick="yesClicked()">Yes 💕</button>
+<button id="noBtn" onclick="noClicked()">No 🙈</button>
+
 </div>
 
 <div class="container final" id="final">
     <h1>🥰 Yayyyy!</h1>
-    <p>Charishma, you just made my heart so happy 💘</p>
-    <p>This Valentine’s Day is special because of YOU ❤️</p>
+    <p>Bangarammmmmm, you just made my heart so happy 💘</p>
+    <p>This Valentine’s Day is made only for YOU ❤️</p>
 </div>
 
 <script>
 const noBtn = document.getElementById("noBtn");
 const message = document.getElementById("message");
 
+let noCount = 0;
+
 const texts = [
-    "Are you sure? 🥺",
-    "Think again 😳",
-    "My heart is fragile 💔",
-    "Still no? 😅",
-    "Okay you’re enjoying this 😏"
+    "Are you sure?",
+    "Really sure?",
+    "Are you positive?",
+    "Pookie please 🥺",
+    "Just think about it 💭",
+    "If you say no or eww, I’ll cry and die 😭",
+    "I will be very sad 💔",
+    "Last chance 😢"
 ];
 
-let i = 0;
+function noClicked() {
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const message = document.getElementById("message");
 
-function moveNo() {
-    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
-    noBtn.style.top = Math.random() * (window.innerHeight - 100) + "px";
-    message.innerText = texts[i % texts.length];
-    i++;
+    if (noCount < texts.length) {
+        message.innerText = texts[noCount];
+
+        // Shrink NO
+        let noScale = Math.max(0.2, 1 - noCount * 0.12);
+        noBtn.style.transform = `scale(${noScale})`;
+
+        // Grow YES
+        let yesScale = 1 + noCount * 0.25;
+        yesBtn.style.transform = `scale(${yesScale})`;
+
+        noCount++;
+    }
+
+    // FULL SCREEN YES
+    if (noCount === texts.length) {
+        yesBtn.style.position = "fixed";
+        yesBtn.style.top = "0";
+        yesBtn.style.left = "0";
+        yesBtn.style.width = "100vw";
+        yesBtn.style.height = "100vh";
+        yesBtn.style.fontSize = "15vw";
+        yesBtn.style.borderRadius = "0";
+        yesBtn.innerText = "YES 💖";
+
+        noBtn.style.display = "none";
+        message.innerText =
+          "Don’t forget! You have to ask her to be your Valentine ❤️";
+    }
 }
 
 function yesClicked() {
